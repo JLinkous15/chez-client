@@ -1,7 +1,9 @@
-export const Home = ({ setToggle}) => {
-    return <section 
+export const ChezDetail = ({setToggle}) => {
+    return (
+        <section 
     className="component_container"
     onClick={()=>{setToggle(true)}}>
     Hello World!
     </section>
+    )
 }

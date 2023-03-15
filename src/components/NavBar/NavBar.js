@@ -7,7 +7,7 @@ export const NavBar = ({toggle, setToggle}) => {
     
     return <>
         <ul className='navbar'>
-            <li onClick={()=>{setToggle(!toggle)}}>
+            <li onClick={()=>{setToggle(true)}}>
                 <Link to={'/'}>
                     <img src="../../resources/chez.svg" alt="home" className="navbar-logo" />
                 </Link>
@@ -23,14 +23,18 @@ export const NavBar = ({toggle, setToggle}) => {
         <ul 
         className={`navbar2 ${toggle?"":"toggle"}`}
         onClick={()=>{setToggle(!toggle)}}>
-            {NavBarLinks.map(link=>{
-                return <li className="navbar-listitem">
+            {NavBarLinks.map((link, index)=>{
+                return (
+                <li 
+                key={index}
+                className="navbar-listitem">
                     <Link 
-                        to={link.path} 
-                        className="navbar2-links">
+                    to={link.path} 
+                    className="navbar2-links">
                         {link.name}
                     </Link>
                 </li>
+                )
             })}
         </ul>
         </>

@@ -8,15 +8,15 @@ export const NavBarLinks = [
         path: "/profile",
     },
     {
-        name: "Your Chez",
+        name: "Your Chezzes",
         path: "/yourChez",
     },
     {
-        name: "The Grill",
+        name: "Post A Chez",
         path: "/chezForm",
     },
     {
         name: "Browse",
-        path: "/browse",
+        path: "/chezList",
     }
 ]
