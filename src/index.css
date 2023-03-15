@@ -25,12 +25,18 @@ a:hover {
 
 input,
 input::file-selector-button,
-select {
+select,
+.button {
   border: none;
   height: 2rem;
-  border-radius: 1.5rem;
+  border-radius: 15px;
   margin: 1rem;
   padding: .5rem 1rem;
+  color: #E8AB13;
+}
+
+.button:hover {
+  cursor: pointer;
 }
 
 select {
@@ -46,7 +52,8 @@ fieldset {
 }
 
 textarea {
-  border-radius: 1.5rem;
+  border-radius: 15px;
   border: none;
   padding: 16px;
+  color: #E8AB13;
 }
