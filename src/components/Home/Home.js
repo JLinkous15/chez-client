@@ -7,5 +7,8 @@ export const Home = ({ setToggle}) => {
     className="component_container"
     onClick={()=>{setToggle(true)}}>
     Hello World!
+    {
+
+    }
     </section>
 }

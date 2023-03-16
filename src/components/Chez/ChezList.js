@@ -53,23 +53,24 @@ export const ChezList = ({setToggle}) => {
                 <option value="1">Subscriptions</option>
             </select>
         </div>
-        <ul>
+        <ul className="chezList">
         {filteredChezzes.map(chez=>{return (
-        <li
+        <><li
         className="chezList-item">
             <img 
             src={`${chez.image}`} 
             alt="chez"
             className="chezList-image" />
-            <Link to={`/chezList/${chez.id}`}>{chez.name} by {chez.chef.username}</Link>
-            
-            {chez.chef.is_chef
+            <h1>{chez.chef.username}</h1>
+            <Link to={`/chezList/${chez.id}`}>{chez.name} </Link>
+        </li>
+        {chez.chef.is_chef
             ?<>
             <button 
-            className="button"
+            className="orange-button"
             onClick={()=>{navigate(`/chezList/${chez.id}/edit`)}}>edit</button>
             <button 
-            className="button"
+            className="orange-button"
             onClick={()=>{
                 deleteChez(chez.id)
                 .then(()=>getAllChezzes()
@@ -77,7 +78,7 @@ export const ChezList = ({setToggle}) => {
                 }}>delete</button>
             </>
         :""}
-        </li>
+        </>
         )})}
         </ul>
     </section>

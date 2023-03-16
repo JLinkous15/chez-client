@@ -13,10 +13,10 @@
     right: calc(50% - calc(var(--chat-button)/2));
     background: #fff;
     border-radius: 15px 15px 0 0;
-    transition: 300ms cubic-bezier(0.57, -0.6, 0.32, 1.27);
-    border-top: #E8AB13 solid 5px;
-    border-left: #E8AB13 solid 5px;
-    border-right: #E8AB13 solid 5px;
+    /* transition: 300ms cubic-bezier(0.57, -0.6, 0.32, 1.27); */
+    border-top: #FFEFCA solid 10px;
+    border-left: #FFEFCA solid 10px;
+    border-right: #FFEFCA solid 10px;
 }
 
 .chatGPT-bot {
@@ -39,7 +39,8 @@
 
 .chatGPT-responses {
     height: 0;
-    /* transition: 300ms cubic-bezier(0.57, -0.6, 0.32, 1.27); */
+    transition: 300ms cubic-bezier(0.57, -0.6, 0.32, 1.27);
+
 }
 
 .chatGPT-x {
@@ -58,13 +59,14 @@
     height: 75vw;
     left: calc(50% - calc(var(--chat-button) + var(--chat-input))/2);
     right: calc(50% - calc(var(--chat-button) + var(--chat-input))/2);
-    transition: 300ms cubic-bezier(0.57, -0.6, 0.32, 1.27);
+    /* transition: 300ms cubic-bezier(0.57, -0.6, 0.32, 1.27); */
 }
 
 .chatGPT-input.toggle {
     display: inline;
     width: calc(var(--chat-input) - 7rem);
     color: #fff;
+    font-size: 1.25rem;
 }
 
 .chatGPT-x.toggle {
@@ -78,6 +80,7 @@
 .chatGPT-responses.toggle {
     background-color: #E8AB13;
     color: #fff;
+    font-size: 1.25rem;
     height: 75vh;
     width: 75vw;
     padding: 1rem;
