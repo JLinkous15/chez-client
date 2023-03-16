@@ -15,3 +15,12 @@ export const getSingleChef = (id) => {
     })
     .then(res=>res.json())
 }
+
+export const getMe = () => {
+    return fetch('http://localhost:8000/chefs/getMe', {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("authorization_token")}`
+        }
+    })
+    .then(res=>res.json()) 
+}
