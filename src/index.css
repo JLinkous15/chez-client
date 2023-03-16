@@ -8,7 +8,7 @@
 html,
 body,
 #root,
-.componentContainer {
+.component_container {
   min-height: 100vh !important;
   max-width: 100vw !important;
   background-color: #E8AB13;

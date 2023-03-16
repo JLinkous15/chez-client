@@ -1,24 +1,67 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { deleteChez, getAllChezzes } from "../../managers/ChezManager"
+import { Link, useNavigate } from "react-router-dom"
+import { getAllCheeses } from "../../managers/CheeseManager"
+import { deleteChez, getAllChezzes, subscribedChezzes } from "../../managers/ChezManager"
+import "./ChezList.css"
 
 export const ChezList = ({setToggle}) => {
     const [chezzes, setChezzes] = useState([])
+    const [filteredChezzes, setFilteredChezzes] = useState([])
+    const [cheeses, setCheeses] = useState([])
+    const [isFiltered, setIsFiltered] = useState(0)
     const navigate = useNavigate()
 
     useEffect(()=>{
         getAllChezzes().then(setChezzes)
+        getAllCheeses().then(setCheeses)
     }, [])
+
+    useEffect(()=>{
+        setFilteredChezzes(chezzes)
+    }, [chezzes])
+
+    useEffect(()=>{
+        if(isFiltered===0){
+            setFilteredChezzes(chezzes)
+        }
+        else if(isFiltered===1){
+            subscribedChezzes().then(setFilteredChezzes)
+        }
+    },[isFiltered])
 
     return (
         <section 
     className="component_container"
     onClick={()=>{setToggle(true)}}>
+        <div className="selectors">
+            <select className="chezList-select">
+                <option value="0">All Cheeses</option>
+                {cheeses.map(cheese=>{
+                    return <option 
+                    value={cheese.id}
+                    key={cheese.id}>
+                        {cheese.name}
+                    </option>
+                })}
+            </select>
+            <select 
+            className="chezList-select"
+            onChange={(e)=>{
+                setIsFiltered(parseInt(e.target.value))
+            }}>
+                <option value="0">All Chezzes</option>
+                <option value="1">Subscriptions</option>
+            </select>
+        </div>
         <ul>
-        {chezzes.map(chez=>{return (
-        <li>
-            <img src={`${chez.image}`} alt="chez" />
-            {chez.name} by {chez.chef.username}
+        {filteredChezzes.map(chez=>{return (
+        <li
+        className="chezList-item">
+            <img 
+            src={`${chez.image}`} 
+            alt="chez"
+            className="chezList-image" />
+            <Link to={`/chezList/${chez.id}`}>{chez.name} by {chez.chef.username}</Link>
             
             {chez.chef.is_chef
             ?<>

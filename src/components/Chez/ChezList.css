@@ -1,0 +1,8 @@
+.chez-detail-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.chezList-image {
+    width: 200px;
+}

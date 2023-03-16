@@ -22,7 +22,7 @@ export const NavBar = ({toggle, setToggle}) => {
         </ul>
         <ul 
         className={`navbar2 ${toggle?"":"toggle"}`}
-        onClick={()=>{setToggle(!toggle)}}>
+        onClick={()=>{setToggle(true)}}>
             {NavBarLinks.map((link, index)=>{
                 return (
                 <li 
@@ -36,6 +36,12 @@ export const NavBar = ({toggle, setToggle}) => {
                 </li>
                 )
             })}
+            <li
+            className="navbar-listitem">
+                <Link onClick={()=>{localStorage.removeItem("authorization_token")}} to="/login">
+                    Logout
+                </Link>
+            </li>
         </ul>
         </>
 }
