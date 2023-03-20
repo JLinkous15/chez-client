@@ -77,3 +77,12 @@ export const subscribedChezzes = () => {
     })
     .then(res=>res.json())
 }
+
+export const getMyChezzes = () => {
+    return fetch(`http://localhost:8000/chezzes/myChezzes`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem('authorization_token')}`
+        }
+    })
+    .then(res=>res.json())
+}

@@ -6,7 +6,6 @@ import { amISubscribed, getMySubscriptions, subscribe, unsubscribe } from "../..
 export const ChezDetail = ({setToggle}) => {
     const [chez, setChez] = useState({
         chef:{
-            id: 0
         },
         cheeses:[],
         chez_comments:[]
@@ -48,7 +47,7 @@ export const ChezDetail = ({setToggle}) => {
                 </ul>
             </div>
             <button 
-            className = "comment button"
+            className = "comment orange-button"
             onClick={()=>{
                 setCommentToggle(!commentToggle)
             }}>
@@ -56,7 +55,7 @@ export const ChezDetail = ({setToggle}) => {
             </button>
            {subscribed
            ?<button
-           className = "unsubscribe button"
+           className = "unsubscribe orange-button"
            onClick={()=>{
                unsubscribe(chez.chef.id)
                .then(()=>{
@@ -66,7 +65,7 @@ export const ChezDetail = ({setToggle}) => {
                unsubscribe
            </button>
            :<button
-            className = "subscribe button"
+            className = "subscribe orange-button"
             onClick={()=>{
                 subscribe(chez.chef.id)
                 .then(()=>{
@@ -97,10 +96,11 @@ export const ChezDetail = ({setToggle}) => {
             <ul className = "chez-comment-list">
             {chez.chez_comments.map(comment=>{
             return <li key={comment.id}>
+                {/* {comment.chef.image} */}
                 {comment.body} 
                 {chez.chef.is_chef
                     ?<button 
-                    className="button"
+                    className="orange-button"
                     onClick={()=>{
                         deleteComment(comment.id)
                         .then(()=>getSingleChez(chezId).then(setChez))

@@ -1,0 +1,25 @@
+:root {
+    --profile-image-size: 10rem;
+}
+
+.profile_card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #E8AB13;
+    color: #fff;
+    padding: 2rem;
+}
+
+.profile-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.profile_photo {
+    height: var(--profile-image-size);
+    width: var(--profile-image-size);
+    border-radius: calc(var(--profile-image-size) / 2);
+}

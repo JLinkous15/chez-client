@@ -46,9 +46,7 @@ export const ChezForm = ({ setToggle}) => {
         });
     }
 
-    const handlePOST = async (event) => {
-        event.preventDefault()
-        
+    const handlePOST = async () => {
         const copy = {...chez}
         copy.image = image
         await postChez(copy)
@@ -56,8 +54,6 @@ export const ChezForm = ({ setToggle}) => {
     }
     
     const handlePUT = async (e) => {
-        e.preventDefault()
-        
         const copy = {...chez}
         if(image){
             copy.image = image
@@ -70,7 +66,9 @@ export const ChezForm = ({ setToggle}) => {
         <section 
         className="component_container"
         onClick={()=>{setToggle(true)}}>
-            <form type="submit">
+            <form type="submit" onSubmit={(e)=>{
+                e.preventDefault()
+            }}>
                 <fieldset>
                     <label 
                     htmlFor="name">
@@ -128,8 +126,6 @@ export const ChezForm = ({ setToggle}) => {
                     )})
                     }
                     </ul>
-
-
                 </fieldset>
                 <fieldset>
                     <label 
@@ -157,9 +153,13 @@ export const ChezForm = ({ setToggle}) => {
                 </fieldset>
                 <button
                 className="button"
-                onClick={chezId
-                ?handlePUT
-                :handlePOST}>
+                onClick={(e)=>{
+                    e.preventDefault()
+                    chezId
+                    ?handlePUT()
+                    :handlePOST()
+                }}
+                >
                     Submit
                 </button>
             </form>
