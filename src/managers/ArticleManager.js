@@ -1,0 +1,22 @@
+const token = localStorage.getItem("authorization_token")
+
+export const postArticle = (body) => {
+    return fetch(`http://localhost:8000/articles`, {
+        method: "POST",
+        headers: {
+            "Authorization" : `Token ${localStorage.getItem("authorization_token")}`,
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(res=>res.json())
+}
+
+export const getAllArticles = (chez) => {
+    return fetch('http://localhost:8000/articles', {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem('authorization_token')}`
+        }
+    })
+    .then(res=>res.json())
+}

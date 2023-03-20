@@ -27,3 +27,11 @@
 .chezList-item>a {
     color: #fff;
 }
+
+.chez-comment-list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 2rem;
+    background-color: #fff;
+}
