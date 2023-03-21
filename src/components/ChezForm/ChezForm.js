@@ -152,7 +152,7 @@ export const ChezForm = ({ setToggle}) => {
                     onChange={createChezImageString}/>
                 </fieldset>
                 <button
-                className="button"
+                className="orange-button"
                 onClick={(e)=>{
                     e.preventDefault()
                     chezId
