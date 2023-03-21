@@ -40,7 +40,17 @@
 
 .chatGPT-responses {
     height: 0;
+    overflow: scroll;
+}
 
+.chatGPT-user-input {
+    text-align: left;
+    padding: 1rem 3rem 1rem 0;
+}
+
+.chatGPT-response {
+    text-align: right;
+    padding: 1rem 0 1rem 3rem;
 }
 
 .chatGPT-x {
