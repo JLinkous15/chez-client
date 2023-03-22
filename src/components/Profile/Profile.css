@@ -1,5 +1,6 @@
 :root {
-    --profile-image-size: 10rem;
+    --profile-image-size: 15rem;
+    --modal-width: 50%;
 }
 
 .profile_card {
@@ -8,7 +9,9 @@
     justify-content: space-evenly;
     background-color: #E8AB13;
     color: #fff;
-    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: -1rem 1rem #A6AFBF;
+    margin: 2rem;
 }
 
 .profile-image {
@@ -16,10 +19,52 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    padding: 2rem 4rem;
 }
 
 .profile_photo {
     height: var(--profile-image-size);
     width: var(--profile-image-size);
     border-radius: calc(var(--profile-image-size) / 2);
+}
+
+.profile-details {
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    list-style: none;
+}
+
+.subscription-modal {
+    padding: 2rem 4rem;
+    position: fixed;
+    width: var(--modal-width);
+    left: calc(50% - var(--modal-width) / 2);
+    right: calc(50% - var(--modal-width) / 2);
+    top: 10rem;
+    border-radius: 15px;
+    border: #FFEFCA solid 10px;
+    background-color: #E8AB13;
+    color: #fff;
+    text-align: center;
+
+}
+
+.profile-subscription-x:hover {
+    scale: 110%;
+    cursor: pointer;
+    transition: ease-in-out 300ms;
+}
+
+.profile-subscription-list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 3rem;
+}
+
+.profile-subscription-list-image {
+    width: 100px;
+    border-radius: 100%;
 }

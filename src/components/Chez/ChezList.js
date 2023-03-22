@@ -17,15 +17,18 @@ export const ChezList = ({setToggle}) => {
     }, [])
 
     useEffect(()=>{
-        setFilteredChezzes(chezzes)
+        setFilteredChezzes(chezzes.filter(chez=>chez.is_published))
     }, [chezzes])
 
     useEffect(()=>{
         if(isFiltered===0){
-            setFilteredChezzes(chezzes)
+            setFilteredChezzes(chezzes.filter(chez=>chez.is_published))
         }
         else if(isFiltered===1){
-            subscribedChezzes().then(setFilteredChezzes)
+            subscribedChezzes()
+            .then(()=>{
+                setFilteredChezzes(chezzes.filter(chez=>chez.is_published))
+            })
         }
     },[isFiltered])
 
@@ -55,15 +58,16 @@ export const ChezList = ({setToggle}) => {
         </div>
         <ul className="chezList">
         {filteredChezzes.map(chez=>{return (
-        <><li
+        <Link key={chez.id} to={`/chezList/${chez.id}`}>
+            <li
         className="chezList-item">
-            <img 
-            src={`${chez.image}`} 
-            alt="chez"
-            className="chezList-image" />
-            <h1>{chez.chef.username}</h1>
-            <Link to={`/chezList/${chez.id}`}>{chez.name} </Link>
-        </li>
+                <img 
+                src={`${chez.image}`} 
+                alt="chez"
+                className="chezList-image" />
+                <h1>{chez.name}</h1>
+                <h2>by: {chez.chef.username}</h2>
+            </li>
         {chez.chef.is_chef
             ?<>
             <button 
@@ -78,7 +82,7 @@ export const ChezList = ({setToggle}) => {
                 }}>delete</button>
             </>
         :""}
-        </>
+        </Link>
         )})}
         </ul>
     </section>

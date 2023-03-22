@@ -9,13 +9,15 @@
 
 .chezList-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background-color: #E8AB13;
     color: #ffffff;
     margin: 1rem 0;
     min-height: 5rem;
+    box-shadow: -1rem 1rem #A6AFBF;
+    width: 500px;
 }
 
 .chezList-image {
@@ -24,14 +26,16 @@
     margin: 1rem;
 }
 
-.chezList-item>a {
-    color: #fff;
-}
-
 .chez-comment-list {
     list-style: none;
     display: flex;
     flex-direction: row;
     padding: 1rem 2rem;
     background-color: #fff;
+    box-shadow: -1rem 1rem #A6AFBF;
+}
+
+.chez-image {
+    width: 250px;
+    height: 250px
 }

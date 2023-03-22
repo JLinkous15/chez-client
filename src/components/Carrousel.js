@@ -17,7 +17,7 @@ export const Carrousel = ({array, theme}) => {
                     <FaChevronLeft />
                 </button>
                 <div className="slider"
-                style={{transform: `translatex(calc(-91% * ${slider}))`}}
+                style={{transform: `translatex(calc(-95.7% * ${slider}))`}}
                 >
                     {array.map(chez=>{
                         return <div className="slideItem-container" key={chez.id}>

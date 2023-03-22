@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { deleteComment, getSingleChez, postComment } from "../../managers/ChezManager"
 import { amISubscribed, getMySubscriptions, subscribe, unsubscribe } from "../../managers/SubscriptionManager"
+import { ChezHero } from "../ChezHero"
+import { Hero } from "../Hero"
+import "./ChezList.css"
 
 export const ChezDetail = ({setToggle}) => {
     const [chez, setChez] = useState({
@@ -16,6 +19,7 @@ export const ChezDetail = ({setToggle}) => {
         body: ""
     })
     const {chezId} = useParams()
+    const navigate = useNavigate()
 
     useEffect(()=>{
         getSingleChez(chezId)
@@ -37,44 +41,46 @@ export const ChezDetail = ({setToggle}) => {
         <section 
         className="component_container"
         onClick={()=>{setToggle(true)}}>
+            <ChezHero article={chez} />
             <div className = "chez-detail-card">
-                <img src = {chez.image}/>
-                <ul className="chez-detail-card">
-                    <li>{chez.name}</li>
-                    <li>{chez.cheeses.map(cheese=>cheese.name)}</li>
-                    <li>{chez.chef?.username}</li>
-                    <li>{chez.recipe}</li>
-                </ul>
+                    <p>{chez.recipe}</p>
             </div>
-            <button 
-            className = "comment orange-button"
+            <div className="chez-detail-buttons">
+                <button 
+                className="orange-button"
+                onClick={()=>{
+                    navigate(`/chezList/${chez.id}/edit`)
+                }}>Edit</button>
+                <button 
+                className = "comment orange-button"
+                onClick={()=>{
+                    setCommentToggle(!commentToggle)
+                }}>
+                    Leave a comment
+                </button>
+            {subscribed
+            ?<button
+            className = "unsubscribe orange-button"
             onClick={()=>{
-                setCommentToggle(!commentToggle)
-            }}>
-                Leave a comment
-            </button>
-           {subscribed
-           ?<button
-           className = "unsubscribe orange-button"
-           onClick={()=>{
-               unsubscribe(chez.chef.id)
-               .then(()=>{
-                amISubscribed(chez.chef.id)
-                .then(setSubscribed)})
-           }}>
-               unsubscribe
-           </button>
-           :<button
-            className = "subscribe orange-button"
-            onClick={()=>{
-                subscribe(chez.chef.id)
+                unsubscribe(chez.chef.id)
                 .then(()=>{
-                 amISubscribed(chez.chef.id)
-                 .then(setSubscribed)})
+                    amISubscribed(chez.chef.id)
+                    .then(setSubscribed)})
             }}>
-                subscribe
+                unsubscribe
             </button>
-            }
+            :<button
+                className = "subscribe orange-button"
+                onClick={()=>{
+                    subscribe(chez.chef.id)
+                    .then(()=>{
+                    amISubscribed(chez.chef.id)
+                    .then(setSubscribed)})
+                }}>
+                    subscribe
+                </button>
+                }
+            </div>
             {commentToggle
             ?""
             :<>
@@ -93,7 +99,8 @@ export const ChezDetail = ({setToggle}) => {
                 Submit
             </button>
             </>}
-            <ul className = "chez-comment-list">
+            {chez.chez_comments.length > 0
+            ?<ul className = "chez-comment-list">
             {chez.chez_comments.map(comment=>{
             return <li key={comment.id}>
                 {/* {comment.chef.image} */}
@@ -111,6 +118,7 @@ export const ChezDetail = ({setToggle}) => {
                 </li>
             })}
             </ul>
+            :""}
     </section>
     )
 }

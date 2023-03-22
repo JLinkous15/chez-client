@@ -18,5 +18,9 @@ export const NavBarLinks = [
     {
         name: "Browse",
         path: "/chezList",
+    },
+    {
+        name: "Articles",
+        path: "/articles",
     }
 ]
