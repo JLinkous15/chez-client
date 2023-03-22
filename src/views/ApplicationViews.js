@@ -8,9 +8,8 @@ import { Profile } from "../components/Profile/Profile"
 import { YourChez } from "../components/Profile/YourChez"
 import { ChezDetail } from "../components/Chez/ChezDetail"
 import { ChezList } from "../components/Chez/ChezList"
-import { ChatGPT } from "../components/ChatGPT/ChatGPT"
-import { PostArticle } from "../components/PostArticle/PostArticle"
-import { NavBar } from "../components/NavBar/NavBar"
+import { AllArticles } from "../components/PostArticle/AllArticles"
+import { ArticleDetail } from "../components/PostArticle/ArticleDetail"
 
 
 export const ApplicationViews = ({toggle, setToggle}) => {
@@ -27,6 +26,8 @@ export const ApplicationViews = ({toggle, setToggle}) => {
             <Route path="chezList" element={<ChezList setToggle={setToggle} />} />
             <Route path="chezList/:chezId" element={<ChezDetail setToggle={setToggle} />} />
             <Route path="chezList/:chezId/edit" element={<ChezForm setToggle={setToggle} />} />
+            <Route path="articles" element={<AllArticles setToggle={setToggle} />} />
+            <Route path="articles/:articleId" element={<ArticleDetail setToggle={setToggle} />} />
 
 
         </Route>

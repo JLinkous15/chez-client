@@ -12,7 +12,8 @@ export const ChezForm = ({ setToggle}) => {
         name: "",
         recipe: "",
         image: "",
-        cheeses: []
+        cheeses: [],
+        is_published: false
     })
 
     const {chezId} = useParams()
@@ -60,6 +61,10 @@ export const ChezForm = ({ setToggle}) => {
         }
         await updateChez(chezId, copy)
         .then(()=>navigate(`/chezList/${chezId}`))
+    }
+
+    const handleIsPublished = () => {
+
     }
     
     return (
@@ -150,6 +155,23 @@ export const ChezForm = ({ setToggle}) => {
                     className="image"
                     accept="image/*"
                     onChange={createChezImageString}/>
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="is_published">Do you want to publish your chez?</label>
+                    <input 
+                    name="is_published"
+                    type="checkbox"
+                    defaultChecked={chez.is_published}
+                    value={chez.is_published}
+                    onClick={()=>{
+                        if(chez.is_published){
+                            const copy = {...chez, is_published: false}
+                            setChez(copy)
+                        }else{
+                            const copy = {...chez, is_published: true}
+                            setChez(copy)
+                        }
+                    }}/>
                 </fieldset>
                 <button
                 className="orange-button"
