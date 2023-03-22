@@ -15,7 +15,7 @@ export const AllArticles = ({setToggle}) => {
     onClick={()=>{setToggle(true)}}>
         {
             articles.map(article=>{
-                return <div><Hero article={article} /></div>
+                return <Hero article={article} />
             })
         }
     </section>

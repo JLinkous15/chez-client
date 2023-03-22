@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { getMe } from "../../managers/ChefManager"
 import { deleteComment, getSingleChez, postComment } from "../../managers/ChezManager"
 import { amISubscribed, getMySubscriptions, subscribe, unsubscribe } from "../../managers/SubscriptionManager"
 import { ChezHero } from "../ChezHero"
-import { Hero } from "../Hero"
 import "./ChezList.css"
 
 export const ChezDetail = ({setToggle}) => {
@@ -13,6 +13,7 @@ export const ChezDetail = ({setToggle}) => {
         cheeses:[],
         chez_comments:[]
     })
+    const [me, setMe] = useState({})
     const [commentToggle, setCommentToggle] = useState(true)
     const [subscribed, setSubscribed] = useState(false)
     const [comment, setComment] = useState({
@@ -24,6 +25,9 @@ export const ChezDetail = ({setToggle}) => {
     useEffect(()=>{
         getSingleChez(chezId)
         .then(setChez)
+
+        getMe()
+        .then(setMe)
     }, [])
 
     useEffect(()=>{
@@ -46,11 +50,15 @@ export const ChezDetail = ({setToggle}) => {
                     <p>{chez.recipe}</p>
             </div>
             <div className="chez-detail-buttons">
+                {me.id === chez.chef.id?
                 <button 
                 className="orange-button"
                 onClick={()=>{
                     navigate(`/chezList/${chez.id}/edit`)
-                }}>Edit</button>
+                }}>
+                    Edit
+                </button>
+                :""}
                 <button 
                 className = "comment orange-button"
                 onClick={()=>{
@@ -67,7 +75,7 @@ export const ChezDetail = ({setToggle}) => {
                     amISubscribed(chez.chef.id)
                     .then(setSubscribed)})
             }}>
-                unsubscribe
+                Unsubscribe
             </button>
             :<button
                 className = "subscribe orange-button"
@@ -77,7 +85,7 @@ export const ChezDetail = ({setToggle}) => {
                     amISubscribed(chez.chef.id)
                     .then(setSubscribed)})
                 }}>
-                    subscribe
+                    Subscribe
                 </button>
                 }
             </div>
@@ -102,10 +110,10 @@ export const ChezDetail = ({setToggle}) => {
             {chez.chez_comments.length > 0
             ?<ul className = "chez-comment-list">
             {chez.chez_comments.map(comment=>{
-            return <li key={comment.id}>
-                {/* {comment.chef.image} */}
-                {comment.body} 
-                {chez.chef.is_chef
+            return <li className = "chez-comment-list-item" key={comment.id}>
+                <img className="chez-comment-list-profileImage" src={comment.chef.profile_image} />
+                <p className="chez-comment-list-body">{comment.body} </p>
+                {me.id === comment.chef.id
                     ?<button 
                     className="orange-button"
                     onClick={()=>{

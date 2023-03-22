@@ -55,3 +55,18 @@
     color: #fff;
     z-index: 999;
 }
+
+.article-card {
+    margin: 0 3rem;
+    padding: 2rem 3rem;
+    background-color: #fff;
+    line-height: 2rem;
+    box-shadow: -1rem 1rem #A6AFBF;
+}
+
+.edit-article-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

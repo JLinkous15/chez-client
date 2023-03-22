@@ -43,7 +43,9 @@ export const Profile = ({setToggle}) => {
                     alt="profile_image"/>
                     <button 
                     className="white-button"
-                    onClick={()=>{}}>Edit Info</button>
+                    onClick={()=>{
+                        navigate("/profile/edit")
+                    }}>Edit Info</button>
                 </div>
                 <ul className="profile-details">
                     <li>Username: {me.username}</li>

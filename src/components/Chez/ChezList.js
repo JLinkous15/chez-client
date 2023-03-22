@@ -1,34 +1,24 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { getAllCheeses } from "../../managers/CheeseManager"
-import { deleteChez, getAllChezzes, subscribedChezzes } from "../../managers/ChezManager"
+import { deleteChez, getAllChezzes, getMyChezzes, subscribedChezzes } from "../../managers/ChezManager"
 import "./ChezList.css"
 
 export const ChezList = ({setToggle}) => {
     const [chezzes, setChezzes] = useState([])
-    const [filteredChezzes, setFilteredChezzes] = useState([])
-    const [cheeses, setCheeses] = useState([])
     const [isFiltered, setIsFiltered] = useState(0)
     const navigate = useNavigate()
 
     useEffect(()=>{
         getAllChezzes().then(setChezzes)
-        getAllCheeses().then(setCheeses)
     }, [])
 
     useEffect(()=>{
-        setFilteredChezzes(chezzes.filter(chez=>chez.is_published))
-    }, [chezzes])
-
-    useEffect(()=>{
-        if(isFiltered===0){
-            setFilteredChezzes(chezzes.filter(chez=>chez.is_published))
-        }
-        else if(isFiltered===1){
-            subscribedChezzes()
-            .then(()=>{
-                setFilteredChezzes(chezzes.filter(chez=>chez.is_published))
-            })
+        if(isFiltered===1){
+            subscribedChezzes().then(setChezzes)
+        }else if (isFiltered===2){
+            getMyChezzes().then(setChezzes)
+        }else{
+            getAllChezzes().then(setChezzes)
         }
     },[isFiltered])
 
@@ -37,16 +27,6 @@ export const ChezList = ({setToggle}) => {
     className="component_container"
     onClick={()=>{setToggle(true)}}>
         <div className="selectors">
-            <select className="chezList-select">
-                <option value="0">All Cheeses</option>
-                {cheeses.map(cheese=>{
-                    return <option 
-                    value={cheese.id}
-                    key={cheese.id}>
-                        {cheese.name}
-                    </option>
-                })}
-            </select>
             <select 
             className="chezList-select"
             onChange={(e)=>{
@@ -54,10 +34,11 @@ export const ChezList = ({setToggle}) => {
             }}>
                 <option value="0">All Chezzes</option>
                 <option value="1">Subscriptions</option>
+                <option value="2">My Chezzes</option>
             </select>
         </div>
         <ul className="chezList">
-        {filteredChezzes.map(chez=>{return (
+        {chezzes.map(chez=>{return (<>
         <Link key={chez.id} to={`/chezList/${chez.id}`}>
             <li
         className="chezList-item">
@@ -68,6 +49,7 @@ export const ChezList = ({setToggle}) => {
                 <h1>{chez.name}</h1>
                 <h2>by: {chez.chef.username}</h2>
             </li>
+        </Link>
         {chez.chef.is_chef
             ?<>
             <button 
@@ -82,8 +64,8 @@ export const ChezList = ({setToggle}) => {
                 }}>delete</button>
             </>
         :""}
-        </Link>
-        )})}
+        
+        </>)})}
         </ul>
     </section>
     )
