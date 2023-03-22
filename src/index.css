@@ -37,6 +37,7 @@ select,
   padding: .5rem 1rem;
   font-family: 'Montserrat';
   color: #E8AB13;
+  margin: 1.5rem;
 }
 
 label {}
@@ -48,6 +49,7 @@ label {}
   padding: .5rem 1rem;
   background-color: #E8AB13;
   color: #ffffff;
+  margin: 1.5rem;
 }
 
 .white-button:hover,
@@ -77,7 +79,8 @@ textarea {
 strong {
   font-size: 2rem;
   background-color: #E8AB13;
-  border: #ffffff 5px solid;
+  padding: 3px;
+  border: #FFEFCA 5px solid;
   color: #FFEFCA;
 }
 

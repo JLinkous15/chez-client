@@ -29,3 +29,23 @@ export const getSingleArticle = (id) => {
     })
     .then(res=>res.json())
 }
+
+export const deleteArticle = (id) => {
+    return fetch(`http://localhost:8000/articles/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem('authorization_token')}`
+        }
+    })
+}
+
+export const editArticle = (id, body) => {
+    return fetch(`http://localhost:8000/articles/${id}`, {
+        method: "PUT",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem('authorization_token')}`,
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+}

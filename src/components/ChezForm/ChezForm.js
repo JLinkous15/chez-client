@@ -161,9 +161,8 @@ export const ChezForm = ({ setToggle}) => {
                     <input 
                     name="is_published"
                     type="checkbox"
-                    defaultChecked={chez.is_published}
-                    value={chez.is_published}
-                    onClick={()=>{
+                    checked={chez.is_published}
+                    onChange={()=>{
                         if(chez.is_published){
                             const copy = {...chez, is_published: false}
                             setChez(copy)

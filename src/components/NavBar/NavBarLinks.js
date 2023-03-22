@@ -8,10 +8,6 @@ export const NavBarLinks = [
         path: "/profile",
     },
     {
-        name: "Your Chezzes",
-        path: "/yourChez",
-    },
-    {
         name: "Post A Chez",
         path: "/chezForm",
     },
