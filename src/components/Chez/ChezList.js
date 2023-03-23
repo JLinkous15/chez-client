@@ -41,30 +41,17 @@ export const ChezList = ({setToggle}) => {
         {chezzes.map(chez=>{return (<>
         <Link key={chez.id} to={`/chezList/${chez.id}`}>
             <li
-        className="chezList-item">
+            className="chezList-item">
                 <img 
                 src={`${chez.image}`} 
                 alt="chez"
                 className="chezList-image" />
-                <h1>{chez.name}</h1>
-                <h2>by: {chez.chef.username}</h2>
+                <div>
+                    <h1>{chez.name}</h1>
+                    <h2>by: {chez.chef.username}</h2>
+                </div>
             </li>
         </Link>
-        {chez.chef.is_chef
-            ?<>
-            <button 
-            className="orange-button"
-            onClick={()=>{navigate(`/chezList/${chez.id}/edit`)}}>edit</button>
-            <button 
-            className="orange-button"
-            onClick={()=>{
-                deleteChez(chez.id)
-                .then(()=>getAllChezzes()
-                .then(setChezzes))
-                }}>delete</button>
-            </>
-        :""}
-        
         </>)})}
         </ul>
     </section>
