@@ -17,6 +17,13 @@ Requires server listed above
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+# Login
+username: Carrie1945
+password: me
+
+#ChatGPT
+It only works with a user-supplied API_KEY.
+
 # ERD
 ![erd](https://user-images.githubusercontent.com/113314343/227335487-f3afb13c-c27c-4ede-ac96-b8ba663a2c08.JPG)
 
