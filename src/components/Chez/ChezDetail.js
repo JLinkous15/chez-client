@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { getMe } from "../../managers/ChefManager"
-import { deleteComment, getSingleChez, postComment } from "../../managers/ChezManager"
+import { deleteChez, deleteComment, getSingleChez, postComment } from "../../managers/ChezManager"
 import { amISubscribed, getMySubscriptions, subscribe, unsubscribe } from "../../managers/SubscriptionManager"
 import { ChezHero } from "../ChezHero"
 import "./ChezList.css"
@@ -51,13 +51,23 @@ export const ChezDetail = ({setToggle}) => {
             </div>
             <div className="chez-detail-buttons">
                 {me.id === chez.chef.id?
-                <button 
-                className="orange-button"
-                onClick={()=>{
-                    navigate(`/chezList/${chez.id}/edit`)
-                }}>
-                    Edit
-                </button>
+                <>
+                    <button 
+                    className="orange-button"
+                    onClick={()=>{
+                        deleteChez(chezId)
+                        .then(()=>{navigate(`/chezList`)})
+                    }}>
+                        Delete
+                    </button>
+                    <button 
+                    className="orange-button"
+                    onClick={()=>{
+                        navigate(`/chezList/${chez.id}/edit`)
+                    }}>
+                        Edit
+                    </button>
+                </>
                 :""}
                 <button 
                 className = "comment orange-button"
