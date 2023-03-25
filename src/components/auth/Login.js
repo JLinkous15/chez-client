@@ -32,6 +32,9 @@ export const Login = () => {
     return (
         <main className="container--login">
             <section className="form-container">
+                <img
+                style={{width: "500px"}}
+                src="../../resources/chez.svg"/>
                 <dialog className="dialog dialog--auth" ref={invalidDialog}>
                     <div>Username or password was not valid.</div>
                     <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>

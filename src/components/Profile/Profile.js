@@ -50,6 +50,7 @@ export const Profile = ({setToggle}) => {
                 <ul className="profile-details">
                     <li>Username: {me.username}</li>
                     <li>Name: {me.full_name}</li>
+                    <li>Bio: {me.bio}</li>
                     <li>
                         <button 
                         onClick={handleManageSubscriptionButton}

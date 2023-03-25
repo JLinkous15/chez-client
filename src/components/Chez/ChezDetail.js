@@ -108,10 +108,12 @@ export const ChezDetail = ({setToggle}) => {
             cols="60" 
             rows="20"/>
             <button 
-            className="button"
+            className="orange-button"
             onClick={()=>{
-                postComment(chezId, comment, "POST")
-                .then(getSingleChez(chezId).then(setChez))
+                postComment(chezId, comment)
+                .then(()=>{
+                    getSingleChez(chezId)
+                    .then(setChez)})
                 setCommentToggle(true)
             }}>
                 Submit
