@@ -46,10 +46,8 @@ export const ChezList = ({setToggle}) => {
                 src={`${chez.image}`} 
                 alt="chez"
                 className="chezList-image" />
-                <div>
-                    <h1>{chez.name}</h1>
-                    <h2>by: {chez.chef.username}</h2>
-                </div>
+                <h1 style={{padding: "1rem"}}>{chez.name}</h1>
+                <h2 style={{padding: "1rem"}}>by: {chez.chef.username}</h2>
             </li>
         </Link>
         </>)})}
